@@ -1,0 +1,27 @@
+const express = require("express");
+app = express();
+
+app.get("/", (req, res, next) => {
+  res.send("Hello World!");
+});
+
+app.get("/about", (req, res, next) => {
+  res.send("<h1>About</h1>");
+});
+
+app.get("/users/:name", (req, res, next) => {
+  var user = req.params.name;
+  res.send("<h1>" + user + "</h1>");
+});
+
+// FIXED
+app.get("/users/:name/:age", (req, res, next) => {
+	var values = req.params;	//contains an array of all values - you can do response.send(request.params); to see the values
+	var user = values.name;
+	var age = values.age;
+	res.send("<h1>" + user + "</h1>" + "<h1>" + age + "</h1>");		//only one res.send() is allowed!!
+});
+
+app.listen(3000, () => {
+  console.log("Server is running on port ", 3000);
+});

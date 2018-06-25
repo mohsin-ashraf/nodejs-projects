@@ -1,0 +1,14 @@
+{
+  "name": "serving-static-html-files",
+  "version": "1.0.0",
+  "description": "Serving bastatic HTML Files",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohsin Ashraf",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

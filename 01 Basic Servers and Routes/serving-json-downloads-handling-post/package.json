@@ -1,0 +1,15 @@
+{
+  "name": "serving-json-downloads-handling-post",
+  "version": "1.0.0",
+  "description": "Serving json downloads handling posts",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohsin Ashraf",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  }
+}
