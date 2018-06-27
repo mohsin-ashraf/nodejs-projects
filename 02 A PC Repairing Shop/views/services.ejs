@@ -1,0 +1,21 @@
+<%include ./partials/header%>
+
+    <div class="container">
+        <h1>Services</h1>
+
+        <% results.forEach((result)=>{%>
+            <div class="well">
+                <h2>
+                    <%= result.name %>
+                </h2>
+                <p>
+                    <%= result.description %>
+                </p>
+                <p>
+                    Price Range :
+                    <%= result.price_range %>
+                </p>
+            </div>
+            <% });%>
+    </div>
+    <%include ./partials/footer%>
