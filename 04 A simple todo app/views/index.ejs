@@ -1,0 +1,44 @@
+<%include ./partials/header%>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <form action="/todo/add" method="post">
+          <div class="form-group">
+            <label for="title" class="control-label ">
+              Title
+            </label>
+            <input type="text" name="title" class="form-control ">
+          </div>
+          <div class="form-group">
+            <label for="body" class="control-label ">Body</label>
+            <textarea name="body" id="body" cols="30" rows="10" class="form-control"></textarea>
+          </div>
+          <input type="submit" value="submit" class="btn btn-primary float-right">
+        </form>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-group">
+          <% todos.forEach(function(todo){ %>
+            <li class="list-group-item">
+              <span class="lead">
+                <%=todo.title%> - </span>
+              <span class="">
+                <%=todo.body%>
+              </span>
+              <a href="/todo/edit/<%= todo._id%>">
+                <button class="btn btn-success">
+                  edit
+                </button>
+              </a>
+              <a href="/todo/delete/<%=todo._id%>">
+                <button class="btn btn-danger">delete</button>
+              </a>
+            </li>
+            <%});%>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <%include ./partials/footer%>
