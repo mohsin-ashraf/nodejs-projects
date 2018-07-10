@@ -1,5 +1,5 @@
 const express = require("express");
-const stripe = require("stripe")("sk_test_HXZrgRdzQYTleR74RHGknW8r");
+const stripe = require("stripe")("Your api key here");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const path = require("path");
