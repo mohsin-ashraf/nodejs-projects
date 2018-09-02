@@ -1,0 +1,40 @@
+doctype html
+
+head
+    title Real time chat app
+    link(rel="stylesheet",href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/css/main.css")
+    script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js")
+    script(src="/js/main.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js")
+body
+    nav.navbar.navbar-inverse
+        .container
+            a.navbar-brand(href="/") eChat
+    
+    .container
+        .row
+            .col-md-8
+                #error
+                #userFormWrap
+                    h1 Create Username
+                    form#userForm
+                        input#username.form-control(type="text",placeholder="Choose your username")
+                        br
+                        button.btn.btn-outline-primary(type="submit") Submit
+                #mainWrap
+                    h1 Speak your Mind
+                    form#chatForm
+                        .form-group
+                            textarea#chatInput.form-control(name="body",placeholder="say something" cols="30", rows="5")
+                            br
+                            button.btn.btn-outline-primary(type="submit") Submit
+                            br
+                            br
+                        #chatWindow.well 
+
+            .col-md-4
+                h3 Chat Users
+                ul.list-group
+                    #users
