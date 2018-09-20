@@ -10,7 +10,7 @@ app.set("view engine","ejs");
 
 
 app.get("/",(req,res) =>{
-  html = fetch("https://projecteuler.net")
+  fetch("https://projecteuler.net")
   .then(res => res.text())
   .then(body => {
     let $ = cheerio.load(body);
@@ -23,7 +23,7 @@ app.get("/",(req,res) =>{
 
 
 app.get('/problems',(req,res) =>{
-  html = fetch("https://projecteuler.net/archives;page=1")
+  fetch("https://projecteuler.net/archives;page=1")
   .then(res => res.text())
   .then(body => {
     let $ = cheerio.load(body);
@@ -59,7 +59,7 @@ app.get('/login',(req,res) =>{
 });
 
 app.get("/recent",(req,res) => {
-  html = fetch("https://projecteuler.net/recent")
+  fetch("https://projecteuler.net/recent")
   .then(res => res.text())
   .then(body => {
     let $ = cheerio.load(body);
@@ -86,7 +86,7 @@ app.get("/recent",(req,res) => {
 });
 
 app.get("/problems/:page_number",(req,res) =>{
-  html = fetch("https://projecteuler.net/archives;page="+req.params.page_number)
+  fetch("https://projecteuler.net/archives;page="+req.params.page_number)
   .then(res => res.text())
   .then(body => {
     let $ = cheerio.load(body);
@@ -113,7 +113,7 @@ app.get("/problems/:page_number",(req,res) =>{
 });
 
 app.get("/problem/:problem_number",(req,res) =>{
-  html = fetch("https://projecteuler.net/problem="+req.params.problem_number)
+  fetch("https://projecteuler.net/problem="+req.params.problem_number)
   .then(result => result.text())
   .then(body =>{
     let $ = cheerio.load(body);
