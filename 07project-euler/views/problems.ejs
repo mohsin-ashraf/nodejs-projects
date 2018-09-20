@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>PE | Project Euler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top mb-5">
+        <div class="container">
+            <a class="navbar-brand" href="#">ProjectEuler.net</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav ml-auto ">
+              <li class="nav-item">
+                <a class="nav-link" href="/">About </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/problems/1">Archives</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/recent">Recent</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/news">News</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/register">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Sign In</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+
+  <h1 class="text-center display-1 mt-5">Project Euler</h1>
+  <div class="container">
+    <div class="text-center">
+      <p class="lead">Go to problem number</p>
+      <div class="row">
+        <div class="col-md-4 offset-md-4">
+          <div class="input-group mb-3">
+            <input type="text" id="problem_number"  placeholder="Problem number" class="form-control">
+            <button class="btn btn-primary" id="problem_number_go">Go</button>
+          </div>
+        </div>
+      </div>    
+    </div>
+      <ul class="list-group">
+          <% body.forEach(item => { %>
+            <li class="list-group-item list-group-item-action"><span class="badge badge-primary"><%=item.id%></span> <span class="badge badge-success"><%=item.problem%></span>  <span class="badge badge-danger"><%= item.solvedBy%></span> <a href="/problem/<%=item.id%>" target="_blank" class="float-right btn btn-outline-primary">solve problem</a> </li>
+          <% }) %>
+      </ul>
+  </div>
+
+  <div class="container mt-5 ">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item <%= pageNumber === '1' ? 'active' : ''%>"><a class="page-link" href="/problems/1">1</a></li>
+              <li class="page-item <%= pageNumber === '2' ? 'active' : ''%>"><a class="page-link" href="/problems/2">2</a></li>
+              <li class="page-item <%= pageNumber === '3' ? 'active' : ''%>"><a class="page-link" href="/problems/3">3</a></li>
+              <li class="page-item <%= pageNumber === '4' ? 'active' : ''%> "><a class="page-link" href="/problems/4">4</a></li>
+              <li class="page-item <%= pageNumber === '5' ? 'active' : ''%>"><a class="page-link" href="/problems/5">5</a></li>
+              <li class="page-item <%= pageNumber === '6' ? 'active' : ''%>"><a class="page-link" href="/problems/6">6</a></li>
+              <li class="page-item <%= pageNumber === '7' ? 'active' : ''%>"><a class="page-link" href="/problems/7">7</a></li>
+              <li class="page-item <%= pageNumber === '8' ? 'active' : ''%>"><a class="page-link" href="/problems/8">8</a></li>
+              <li class="page-item <%= pageNumber === '9' ? 'active' : ''%>"><a class="page-link" href="/problems/9">9</a></li>
+              <li class="page-item <%= pageNumber === '10' ? 'active' : ''%>"><a class="page-link" href="/problems/10">10</a></li>
+              <li class="page-item <%= pageNumber === '11' ? 'active' : ''%>"><a class="page-link" href="/problems/11">11</a></li>
+              <li class="page-item <%= pageNumber === '12' ? 'active' : ''%>"><a class="page-link" href="/problems/12">12</a></li>
+              <li class="page-item <%= pageNumber === '13' ? 'active' : ''%>"><a class="page-link" href="/problems/13">13</a></li>
+            </ul>
+          </nav>
+        </div>  
+      </div>
+  </div>
+  <footer class="text-center mt-5 py-3 bg-dark text-white">
+    <p class="lead">Project Euler &copy; copyrights 2018.</p>
+  </footer>
+
+  <script type="text/javascript">
+    document.getElementById('problem_number_go').addEventListener('click',() =>{
+      var problem = document.getElementById('problem_number').value;
+      if (problem)
+        window.location = "/problem/"+problem;
+    })
+  </script>
+</body>
+</html>
