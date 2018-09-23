@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="stylesheet" href="/css/bootstrap.css" >
+</head>
+<body>
+	<div class="container mt-5">
+		<h1 class="">Comments Functionality With NodeJS</h1>
+		<form class="form" method="POST" action="/updateComment/<%= newComment.edit_id%>">
+			<div class="form-group">
+				<label class="label" for="subject">Comment Subject.</label>
+	 			<input type="text" name="subject" value="<%= newComment.subject %>" class="form-control">
+				<small class="form-text text-muted ">Title of your comment.</small>
+			</div>
+			<div class="form-group">
+				<label class="label" for="auther">Auther</label>
+				<input type="text" name="auther" value="<%= newComment.auther %>" class="form-control">
+				<small class="text-muted form-text">Name who is writing this comment</small>
+			</div>
+			<div class="form-group">
+				<label class="label" for="email">Email : </label>
+				<input type="email" name="email" class="form-control" value="<%= newComment.email%>">
+				<small class="text-muted form-text">Email of the comment auther, we will not make it public</small>
+			</div>
+			<div class="form-group">
+				<label class="label" for="comment">Message</label>
+				<textarea class="form-control" name="comment" rows="10"><%= newComment.commentBody %></textarea>
+				<small class="text-muted form-text">Enter the comment that you want about this article</small>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary float-right mr-5" type="submit" >Update Comment</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="stylesheet" href="/css/bootstrap.css" >
+</head>
+<body>
+	
+	<div class="container mt-5" >
+		<h1 class="">Comments Functionality With NodeJS</h1>
+		<form class="form"  method="POST" action="/addComments">
+			<div class="form-group">
+				<label class="label" for="subject">Comment Subject.</label>
+				<input type="text" name="subject" id="subject" class="form-control">
+				<small class="form-text text-muted ">Title of your comment.</small>
+			</div>
+			<div class="form-group">
+				<label class="label" for="auther">Auther</label>
+				<input type="text" name="auther" id="subject" class="form-control">
+				<small class="text-muted form-text">Name who is writing this comment</small>
+			</div>
+			<div class="form-group">
+				<label class="label" for="email">Email : </label>
+				<input type="email" name="email" id="email" class="form-control">
+				<small class="text-muted form-text">Email of the comment auther, we will not make it public</small>
+			</div>
+			<div class="form-group">
+				<label class="label" for="comment">Message</label>
+				<textarea class="form-control" id="comment" name="comment" rows="10"></textarea>
+				<small class="text-muted form-text">Enter the comment that you want about this article</small>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary float-right mr-5" id="submitComment" type="submit">Comment</button>
+			</div>
+		</form>
+		<div class="clearfix"></div>
+		<hr>
+		<h2 class="text-center mb-5 mt-5">Top 10 Comments</h2>
+		<div id="comments-box">
+			<% comments.forEach(comment => { %>
+				<div class="comments mt-5">
+					<button class="btn btn-danger float-right" id="delete-comment" data-del-id="<%= comment._id%>">Delete</button>
+					<a href="/edit/<%= comment._id %>" class="btn btn-success float-right mr-3" id="edit-comment" >Edit</a>
+					<h3 class="text-primary"><%= comment.subject %></h3>
+					<p class="lead"><%= comment.commentBody %></p>
+					<p class="lead text-right"><i>Written by --<%= comment.auther %> at <%= comment.created_at%></i></p>
+				</div>
+			<% })%>	
+		</div>
+
+	</div>
+
+	
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		
+		$("#comments-box").on('click','#delete-comment',function(event){
+			// console.log("RUNNING");
+			console.log($("#delete-comment").attr('data-del-id'))
+			$.ajax({
+				url:"/delete-comment",
+				data:{id:$('#delete-comment').attr('data-del-id')},
+				type:"POST"
+			}),
+			window.location='/';
+		});
+		// $("#submitComment").on("click",function (event) {
+		// 	event.preventDefault();
+		// 	const subject = $("#subject").val();
+		// 	const auther = $("#auther").val();
+		// 	const comment = $("#comment").val();
+		// 	const email = $("#email").val();
+		// 	$.ajax({
+		// 		url:"/addComments",
+		// 		data:{
+		// 			subject:subject,
+		// 			auther:auther,
+		// 			email:email,
+		// 			comment:comment
+		// 		},
+		// 		type:"POST"
+		// 	});
+			
+		// 	window.location = "/";
+		// });
+	</script>
+</body>
+</html>
