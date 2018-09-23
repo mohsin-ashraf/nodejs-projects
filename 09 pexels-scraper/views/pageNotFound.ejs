@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style> #goback{cursor: pointer;} </style>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>PSP | Pexels Stock Photos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+</head>
+
+<body class="bg-light" >
+  <h1 class="text-center display-1">Pexels</h1>
+  <h1 class="display-3 text-center mb-5">The Simplest</h1>  
+
+  <div class="container text-center">
+    <h1 class="mt-5 display-1">
+      Looks like you are gone out of site :(
+    </h1>
+    <h1 class="display-3 text-primary" id="goback"> Go Back :)</h1>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $("#goback").click((e)=>{
+        window.location ="/";
+      })
+    });
+  </script>
+</body>
+</html>
