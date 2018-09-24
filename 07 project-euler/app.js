@@ -3,144 +3,30 @@ const path = require("path");
 const app = express();
 const cheerio = require("cheerio");
 const fetch = require("node-fetch");
-
+const rootControler = require("./controller/RootControler");
 
 app.set('views',path.join(__dirname,"views"))
 app.set("view engine","ejs");
 
+app.get("/",rootControler.get_landing_route);
 
-app.get("/",(req,res) =>{
-  fetch("https://projecteuler.net")
-  .then(res => res.text())
-  .then(body => {
-    let $ = cheerio.load(body);
-    let content = $("div#about_page").text();
-    res.render('index',{
-      content:content
-    })
-  });
-});
+app.get('/problems',rootControler.get_problems_route);
 
+app.get("/register",rootControler.get_register_route);
 
-app.get('/problems',(req,res) =>{
-  fetch("https://projecteuler.net/archives;page=1")
-  .then(res => res.text())
-  .then(body => {
-    let $ = cheerio.load(body);
-    let table = $('table#problems_table tr td');
-    console.log("Length of the table "+table.length+"\n");
-    
-    myObject = [];
+app.get('/login',rootControler.get_login_route);
 
-    for (let i = 0 ; i < table.length-2; i+=2){
-      myObject.push({
-        id:$(table[i]).text(),
-        problem:$(table[i+1]).text(),
-        solvedBy:$(table[i+2]).text()
-      })
-      i+=1;
-      console.log($(table[i]).text());
-    }
-    console.log("End of printing...");
-    res.render('problems',{
-      body:myObject,
-    })
-  });
+app.get("/recent",rootControler.get_recent_route);
 
-});
+app.get("/problems/:page_number",rootControler.get_problems_page_route);
 
+app.get("/problem/:problem_number",rootControler.get_problem_page_route);
 
-app.get("/register",(req,res) =>{
-  res.render("register");
-});
+app.get("/news",rootControler.get_news_route);
 
-app.get('/login',(req,res) =>{
-  res.render("login");
-});
-
-app.get("/recent",(req,res) => {
-  fetch("https://projecteuler.net/recent")
-  .then(res => res.text())
-  .then(body => {
-    let $ = cheerio.load(body);
-    let table = $('table#problems_table tr td');
-    console.log("Length of the table "+table.length+"\n");
-    
-    myObject = [];
-
-    for (let i = 0 ; i < table.length-2; i+=2){
-      myObject.push({
-        id:$(table[i]).text(),
-        problem:$(table[i+1]).text(),
-        solvedBy:$(table[i+2]).text()
-      })
-      i+=1;
-      console.log($(table[i]).text());
-    }
-    console.log("End of printing...");
-    res.render('problems',{
-      body:myObject,
-      pageNumber:''
-    })
-  });
-});
-
-app.get("/problems/:page_number",(req,res) =>{
-  fetch("https://projecteuler.net/archives;page="+req.params.page_number)
-  .then(res => res.text())
-  .then(body => {
-    let $ = cheerio.load(body);
-    let table = $('table#problems_table tr td');
-    console.log("Length of the table "+table.length+"\n");
-    
-    myObject = [];
-
-    for (let i = 0 ; i < table.length-2; i+=2){
-      myObject.push({
-        id:$(table[i]).text(),
-        problem:$(table[i+1]).text(),
-        solvedBy:$(table[i+2]).text()
-      })
-      i+=1;
-      console.log($(table[i]).text());
-    }
-    console.log("End of printing...");
-    res.render('problems',{
-      body:myObject,
-      pageNumber:req.params.page_number
-    })
-  });
-});
-
-app.get("/problem/:problem_number",(req,res) =>{
-  fetch("https://projecteuler.net/problem="+req.params.problem_number)
-  .then(result => result.text())
-  .then(body =>{
-    let $ = cheerio.load(body);
-    let problemTitle = $('h2').text();
-    let problemContent = $('div.problem_content').text();
-    res.render("problem",{
-      problemTitle:problemTitle,
-      problemContent:problemContent,  
-    });
-  });
-});
-
-app.get("/news",(req,res)=>{
-  fetch('https://projecteuler.net/news')
-  .then(result => result.text())
-  .then(body => {
-    let $ = cheerio.load(body);
-    let content = $('div#news_page').text();
-    console.log(content);
-    res.render('news',{
-      content:content
-    })
-  });
-});
 
 // For the routes that does not exist
-app.get("*",(req,res) =>{
+app.use((req,res) =>{
   res.render("pageNotFound");
 })
 
