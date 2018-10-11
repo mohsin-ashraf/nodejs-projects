@@ -1,0 +1,31 @@
+<h1 class="display-3">Businesses</h1>
+
+
+{{#each businesses}}
+<div class="row my-3 bg-light p-3">
+  <div class="col-md-9">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> <a href="/business/show/{{_id}}">{{name}}</a> </h2>
+      </div>
+      <div class="col-md-6">
+        <h3> {{category}} </h3>
+      </div>
+    </div>
+    <a href="{{website}}">Visit Website</a>
+    <h3>Address</h3>
+    <p class="lead"> {{street}} </p>
+    <p class="lead"> {{city}} </p>
+    <p class="lead"> {{state}} </p>
+    <p class="lead"> {{zip}} </p>
+
+    <p class="lead">Contact {{phone}}</p>
+  </div>
+  <div class="col-md-3 pt-5">
+    <div>
+      <a href="/business/edit/{{_id}}" class="btn btn-success">Edit</a>
+      <form action="/business/delete/{{_id}}" method="POST"><button class="btn btn-danger">Delete</button></form>
+    </div>
+  </div>
+</div>
+{{/each}}
